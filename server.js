@@ -12,9 +12,9 @@ app.use(cors());
 
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
-    app.use(express.static(__dirname + '/'));
+    app.use(express.static(__dirname + '/templates'));
     app.get(/^((?!(api)).)*$/, 
-    (req,res)=>res.sendFile(__dirname + '/index.html'))
+    (req,res)=>res.sendFile(__dirname + '/templates/index.html'))
 }
 const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
