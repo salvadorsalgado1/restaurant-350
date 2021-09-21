@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+    
+    background:url("./assets/backgrounds/table.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+ }
+.heading-h1-reservations{
+    color:gray;
+    margin: 20px 0 20px 0;
+}
