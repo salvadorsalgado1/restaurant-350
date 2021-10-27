@@ -2,7 +2,7 @@
 
 This application utilizes methods in order serve the user(s) in a restaurant type of setting.
 
-(Make a Reservation!)[https://restaurant-comp350.herokuapp.com/reservation]
+[Make a Reservation!](https://restaurant-comp350.herokuapp.com/reservation)
 
 ## User Stories
 
