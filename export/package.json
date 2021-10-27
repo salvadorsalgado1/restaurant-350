@@ -1,0 +1,30 @@
+{
+  "name": "restaurant-350",
+  "version": "1.0.0",
+  "description": "This application utilizes methods in order serve the user(s) in a restaurant type of setting.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.12",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salvadorsalgado1/restaurant-350.git"
+  },
+  "author": "Group 2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salvadorsalgado1/restaurant-350/issues"
+  },
+  "homepage": "https://github.com/salvadorsalgado1/restaurant-350#readme"
+}
