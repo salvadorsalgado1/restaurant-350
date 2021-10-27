@@ -3,8 +3,10 @@
     <router-view/>
   </div>
 </template>
-
 <style>
+ body{
+   background-color:rgb(238, 245, 255);
+ }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
