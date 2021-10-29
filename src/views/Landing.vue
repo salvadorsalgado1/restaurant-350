@@ -5,8 +5,18 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-    name:'Landing'
+    name:'Landing',
+    data(){
+        return{
+            
+        }
+    },
+    mounted(){
+         this.$store.dispatch('getUsersTest')
+    }
+    
 }
 </script>
 

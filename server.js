@@ -10,6 +10,13 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors());
 
+const test = require('./routes/api/test')
+app.use('/api/test', test);
+
+const users = require('./routes/api/users')
+app.use('/api/users', users);
+
+
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
     app.use(express.static(__dirname + '/dist'));
