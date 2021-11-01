@@ -16,6 +16,9 @@ app.use('/api/test', test);
 const users = require('./routes/api/users')
 app.use('/api/users', users);
 
+const login = require('./routes/api/login')
+app.use('/api/login', login);
+
 
 if(process.env.NODE_ENV === 'production'){
     //Set static folder

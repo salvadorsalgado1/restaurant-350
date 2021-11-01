@@ -7,6 +7,13 @@
  body{
    background-color:rgb(238, 245, 255);
  }
+ body{
+   background: url('./assets/spa.jpg') no-repeat center center fixed; 
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

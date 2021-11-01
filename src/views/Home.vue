@@ -6,7 +6,7 @@
 </template>
 <script>
 // @ is an alias to /src
-import Reservations from '../components/Reservations'
+ import Reservations from '../components/Reservations'
  export default {
   name: 'Home',
   components: {
