@@ -20,6 +20,10 @@
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" aria-describedby="" v-model="password">
               </div>
+              <div class="mt-4" v-if="this.$store.state.loading">
+                <Loading/>
+              </div>
+              
                <button class="btn btn-primary mt-4">Submit</button>
             </div>
           </div>
@@ -31,7 +35,9 @@
 </template>
 
 <script>
+import Loading from '../components/LoadingSpinner.vue'
  export default {
+   components:{Loading},
    name:'SignIn',
   data(){
     return{
@@ -41,8 +47,14 @@
   },
   methods:{
     submitLogin(email, password){
+     
+      this.$store.commit('Loading', true);
       this.$store.dispatch('dispatchLogin', {email: email, password: password})
-      this.$router.push({name:'Customer'})
+      setTimeout(()=>{
+         this.$store.commit('Loading', false)
+        this.$router.push({name:'Customer'})
+      }, 1000)
+      
     }
   }
     

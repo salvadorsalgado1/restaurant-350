@@ -5,6 +5,7 @@ Vue.use(Vuex)
  
 export default new Vuex.Store({
   state: {
+    loading:false,
     month:[
     'January','February','March','April','May','June',
     'July','August','September','October','November', 'December'],
@@ -20,7 +21,11 @@ export default new Vuex.Store({
     test:[]
   },
   mutations: {
+    Loading(state, payload){
+      state.loading = payload;
+    },
     setUser(state, payload){
+      
       state.user.guestID = payload[0][0].guestID
       state.user.fullName = payload[0][0].fullName
       state.user.phoneNumber = payload[0][0].phoneNumber
@@ -28,15 +33,11 @@ export default new Vuex.Store({
       state.user.employee = payload[0][0].employee
       state.user.manager = payload[0][0].manager
       state.user.reservations = payload[1]
+      
     }
   },
   actions: {
-    getUsersTest(){
-      axios.get('http://localhost:5000/api/test/users')
-      .then(response=>{
-        console.log(response.data)
-      })
-    },
+   
     dispatchLogin({commit}, payload){
       console.log(payload.email)
       axios.get(`http://localhost:5000/api/login/${payload.email}`)
@@ -45,8 +46,9 @@ export default new Vuex.Store({
         let id = response.data[0].guestID
         console.log(response.data);
         if(password == payload.password){
-          console.log("accept login")
           this.dispatch('dispatchUser', id)
+          
+          
         }else{
           console.log("not accepted")
         }
