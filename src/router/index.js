@@ -24,7 +24,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    meta:{employee:true}
+    
   },
   {
     path:'/customer',
