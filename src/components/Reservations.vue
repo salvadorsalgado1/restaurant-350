@@ -1,30 +1,51 @@
 <template>
   <div class="reservation-users">
       <ul class="list-group">
-            <li class="list-group-item">
+            <li v-for="(reservation, resID) in allReservations" :key = "resID" class="list-group-item">
                 <div class="row">
                     <div class="col">
-                        <span class="res-name">John Smith</span> 
-                            <br/>4:00PM Party of 5 
+                        <span class="res-name">{{reservation.fullName}}</span> 
+                            <br/>{{reservation.resDate}} Party of {{reservation.partySize}} 
                     </div>
                     <div class="col d-flex justify-content-end align-items-center">
                         <div class="gap-2 ">
-                            <button class="btn btn-controls btn-primary block btn-block">Notify</button> 
-                            <button class="btn btn-controls btn-danger block btn-block btn-delete">Delete</button>
+                            <button @click = "notifyReservation(reservation.guestID)" class="btn btn-controls btn-primary block btn-block">Notify</button> 
+                            <button @click = "deleteReservation(reservation.resID)" class="btn btn-controls btn-danger block btn-block btn-delete">Delete</button>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="list-group-item">Maria Lindsey 5:00PM<br/>Party of 2 </li>
-            <li class="list-group-item">David Matt 6:00PM<br/>Party of 9 </li>
         </ul>
   </div>
 </template>
 
 <script>
 export default {
-   
-
+    data(){
+        return{
+            reservations:''
+        }
+    },
+    methods:{
+        notifyReservation(id){
+            console.log(id);
+        },
+        deleteReservation(id){
+            console.log(id);
+            console.log(this.allReservations) 
+            this.$store.dispatch("dispatchDeleteReservation", id)
+        }
+    },
+    mounted(){
+        this.$store.dispatch("dispatchAllReservations")
+        console.log(this.reservations)
+    },  
+    computed:{
+        allReservations(){
+            let res = this.$store.state.allReservations;
+            return res;
+        }   
+    }
 }
 </script>
 

@@ -19,6 +19,8 @@ app.use('/api/users', users);
 const login = require('./routes/api/login')
 app.use('/api/login', login);
 
+const reservation = require('./routes/api/reservation')
+app.use('/api/reservation', reservation);
 
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
@@ -30,4 +32,4 @@ if(process.env.NODE_ENV === 'production'){
 const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
     console.log(`Currently running on port ${port}`)
-})
+})  

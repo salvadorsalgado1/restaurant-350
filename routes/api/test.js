@@ -10,6 +10,14 @@ const db = mysql.createPool({
     password:'8f1ab2bb'
   })
 
+  router.get('/reservations', (req, res)=>{
+      const sqlGetAllRes = "SELECT fullName, phoneNumber, partySize, resDate, resEntered FROM heroku_a50bb988a66073c.guest, heroku_a50bb988a66073c.reservation ORDER BY resDate ASC;";
+      db.query(sqlGetAllRes, (err, result)=>{
+          res.send(result);
+      })
+  })
+
+
   router.get('/users', (req, res)=>{
       const sqlGetAll = "SELECT * FROM heroku_a50bb988a66073c.reservation;";
       db.query(sqlGetAll, (err, result)=>{
@@ -26,5 +34,6 @@ const db = mysql.createPool({
     })
 })
   
+
 
   module.exports = router;
