@@ -22,13 +22,15 @@ export default new Vuex.Store({
     reservations:[],
     logged:false,
     manager:false,
-    employee:false
+    employee:false,
+    role:'Customer'
   },
   mutations: {
     logoutUser(state){
       state.logged = false;
       state.manager=false;
       state.employee=false;
+      state.role = 'Customer'
     },
     setDeleteReservation(state, payload){
       let id = parseInt(payload)
@@ -50,11 +52,14 @@ export default new Vuex.Store({
       state.user.fullName = payload[0][0].fullName
       state.user.phoneNumber = payload[0][0].phoneNumber
       state.user.email = payload[0][0].email
-      if(payload[0][0].employee == 1){
+      if(payload[0][0].employee == 1 && payload[0][0].manager == 0){
         state.employee = true;
+        state.role = "Employee"
       }
       if(payload[0][0].manager == 1){
+        state.employee = true;
         state.manager = true;
+        state.role = "Manager"
       }
       state.user.employee = payload[0][0].employee
       state.user.manager = payload[0][0].manager 
@@ -90,12 +95,14 @@ export default new Vuex.Store({
         })
         commit("setDeleteReservation", payload)
     },
-    
     dispatchAllReservations({commit}){
       axios.get("/api/reservation/")
       .then(response=>{
         commit('setAllReservations', response.data)
         console.log(response.data)
+      })
+      .catch(()=>{
+        console.log("Cannot get reservations")
       })
     },
     dispatchLogin({commit}, payload){

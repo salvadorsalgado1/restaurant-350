@@ -11,7 +11,7 @@ import store from '../store/index'
 import Reservation from '../views/Reservation.vue'
 import Sign from '../views/Sign.vue'
 import Registration from '../views/Registration.vue'
-Vue.use(VueRouter)
+ Vue.use(VueRouter)
  
 const routes = [
   {
@@ -24,11 +24,7 @@ const routes = [
     name: 'Registration',
     component: Registration
   },
-  {
-    path: '/reservation',
-    name: 'Reservation',
-    component: Reservation
-  },
+  
   {
     path: '/get-started',
     name: 'Sign',
@@ -65,6 +61,12 @@ const routes = [
     component: SignIn
   },
   {
+    path: '/reservation',
+    name: 'Reservation',
+    component: Reservation,
+    meta:{employee:true}
+  },
+  {
     path: '/manager',
     name: 'Manager',
     component: Manager,
@@ -82,19 +84,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-router.beforeEach((to, from, next)=>{
-  if(to.meta.manager && !store.state.manager){
-    next('/customer')
-  }else{
-    next();
-  }
-
-  if(to.meta.employee && !store.state.employee){
-    next('/customer')
-  }else{
-    next();
-  }
+ 
+router.beforeEach((to, from, next) => {
+  if (to.meta.manager == false && !store.state.manager) next({ name: 'Landing' })
+  else next()
 })
+  
+      
+ 
 
 export default router

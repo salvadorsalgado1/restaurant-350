@@ -66,6 +66,7 @@
       let partySize = this.resSize;
       let guestID = this.$store.state.user.guestID;
       this.$store.dispatch('submitReservation', {reservationTime:submitReservation, resSize:partySize, id:guestID})
+       this.$router.push({name:'Customer'})
     }
   },
   computed:{

@@ -37,7 +37,7 @@
 import Loading from '../components/LoadingSpinner.vue'
  export default {
    components:{Loading},
-   name:'SignIn',
+   name:'Signin',
   data(){
     return{
       password:'',

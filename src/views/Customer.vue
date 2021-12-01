@@ -19,6 +19,7 @@
                   <div class="card">
                       <div class="card-body">
                           <h2>{{userData.fullName}}</h2>
+                          <p>Role: {{userRole}}</p>
                             <p>
                                 Phone Number: <br/>
                                 {{userData.phoneNumber}}
@@ -55,6 +56,10 @@ name:"Customer",
         this.$store.dispatch("dispatchReservations", id)
     },
     computed:{
+        userRole(){
+            let role = this.$store.state.role
+            return role;
+        },
         userData(){
             let username = this.$store.state.user;
             return username
