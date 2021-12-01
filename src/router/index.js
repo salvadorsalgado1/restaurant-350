@@ -8,6 +8,8 @@ import Customer from '../views/Customer.vue'
 import Four from '../views/Four.vue'
 import Manager from '../views/Manager.vue'
 import store from '../store/index'
+
+
 Vue.use(VueRouter)
  
 const routes = [
