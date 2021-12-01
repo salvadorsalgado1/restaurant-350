@@ -7,10 +7,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-         <router-link class="nav-link active" :to="{name:'Home'}">Home</router-link>
-        <router-link class="nav-link" :to="{name:'About'}">About</router-link>
-      </div>
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'About'}">About</router-link>
+         </li>
+        
+      </ul>
+      <span v-if="!this.$store.state.logged" class="navbar-text">
+        <router-link :to="{name:'SignIn'}">Sign In</router-link> | 
+        <router-link :to="{name:'Registration'}">Sign Up</router-link>  
+      </span>
     </div>
   </div>
 </nav>

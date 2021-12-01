@@ -2,14 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Landing from '../views/Landing.vue'
-import Reservation from '../views/Reservation.vue'
+import MakeReservation from '../views/MakeReservation.vue'
 import SignIn from '../views/SignIn.vue'
 import Customer from '../views/Customer.vue'
 import Four from '../views/Four.vue'
 import Manager from '../views/Manager.vue'
 import store from '../store/index'
-
-
+import Reservation from '../views/Reservation.vue'
+import Sign from '../views/Sign.vue'
+import Registration from '../views/Registration.vue'
 Vue.use(VueRouter)
  
 const routes = [
@@ -19,9 +20,24 @@ const routes = [
     component: Landing
   },
   {
+    path: '/register',
+    name: 'Registration',
+    component: Registration
+  },
+  {
     path: '/reservation',
     name: 'Reservation',
     component: Reservation
+  },
+  {
+    path: '/get-started',
+    name: 'Sign',
+    component: Sign
+  },
+  {
+    path: '/make-reservation',
+    name: 'MakeReservation',
+    component: MakeReservation
   },
   {
     path: '/home',
@@ -49,15 +65,15 @@ const routes = [
     component: SignIn
   },
   {
-    path: '/:catchall(.*)',
-    name: 'Four',
-    component: Four
-  },
-  {
     path: '/manager',
     name: 'Manager',
     component: Manager,
     meta:{manager:true}
+  },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four
   },
 ]
 

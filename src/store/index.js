@@ -19,12 +19,17 @@ export default new Vuex.Store({
       manager: 0,
       reservations:[]
     },
-    test:[],
+    reservations:[],
     logged:false,
     manager:false,
     employee:false
   },
   mutations: {
+    logoutUser(state){
+      state.logged = false;
+      state.manager=false;
+      state.employee=false;
+    },
     setDeleteReservation(state, payload){
       let id = parseInt(payload)
       console.log(id)
@@ -40,7 +45,7 @@ export default new Vuex.Store({
       state.loading = payload;
     },
     setUser(state, payload){
-      
+      state.logged = true;
       state.user.guestID = payload[0][0].guestID
       state.user.fullName = payload[0][0].fullName
       state.user.phoneNumber = payload[0][0].phoneNumber
@@ -52,15 +57,34 @@ export default new Vuex.Store({
         state.manager = true;
       }
       state.user.employee = payload[0][0].employee
-      state.user.manager = payload[0][0].manager
-      state.user.reservations = payload[1]
-      
+      state.user.manager = payload[0][0].manager 
+    },
+    setReservations(state, payload){
+      state.reservations = payload
     }
   },
   actions: {
+    dispatchReservations({commit}, payload){
+      console.log(payload)
+      axios.get(`/api/reservation/user/${payload}`)
+      .then(response=>{
+        commit('setReservations', response.data)
+        console.log(response.data)
+      })
+    },
+    submitReservation({commit}, payload){
+      axios.post(`/api/reservation/create/`, {
+        id:payload.id,
+        resTime:payload.reservationTime,
+        resSize:payload.resSize
+      })
+      .then(()=>{
+        console.log("Reservation Created")
+      })
+    },
     dispatchDeleteReservation({commit}, payload){
       console.log("deleted: ", payload)
-      axios.delete(`http://localhost:5000/api/reservation/delete/${payload}`)
+      axios.delete(`/api/reservation/delete/${payload}`)
         .then(()=>{
           console.log("reservation deleted")
         })
@@ -68,7 +92,7 @@ export default new Vuex.Store({
     },
     
     dispatchAllReservations({commit}){
-      axios.get("http://localhost:5000/api/reservation/")
+      axios.get("/api/reservation/")
       .then(response=>{
         commit('setAllReservations', response.data)
         console.log(response.data)
@@ -76,7 +100,7 @@ export default new Vuex.Store({
     },
     dispatchLogin({commit}, payload){
       console.log(payload.email)
-      axios.get(`http://localhost:5000/api/login/${payload.email}`)
+      axios.get(`/api/login/${payload.email}`)
       .then(response=>{
         let password = response.data[0].userPassword
         let id = response.data[0].guestID
@@ -84,14 +108,13 @@ export default new Vuex.Store({
         if(password == payload.password){
           this.dispatch('dispatchUser', id)
           
-          
         }else{
           console.log("not accepted")
         }
       })
     },
     dispatchUser({commit}, payload){
-      axios.get(`http://localhost:5000/api/login/accept/${payload}`)
+      axios.get(`/api/login/accept/${payload}`)
       .then(response=>{
         commit('setUser', response.data)
         console.log(response.data)

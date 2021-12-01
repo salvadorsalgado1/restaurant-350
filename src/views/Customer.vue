@@ -50,8 +50,9 @@ name:"Customer",
         }
     },
     mounted(){
-        
-        
+        let id = this.$store.state.user.guestID;
+        console.log(id)
+        this.$store.dispatch("dispatchReservations", id)
     },
     computed:{
         userData(){
@@ -59,14 +60,9 @@ name:"Customer",
             return username
         },
         currentUser(){
-            let reservations = this.$store.state.user.reservations;
+            let reservations = this.$store.state.reservations;
             return reservations
         },
-        test(){//Line 18 variable
-            
-            let message = 'Past Reservations'
-            return message;
-        }
     }
 }
 </script>

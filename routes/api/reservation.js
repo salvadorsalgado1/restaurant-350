@@ -25,6 +25,25 @@ router.delete('/delete/:id', (req, res)=>{
   })
 })
 
+router.post('/create', (req, res)=>{
+  const sqlCreateReservation = ' INSERT INTO heroku_a50bb988a66073c.reservation (guestID, partySize, resDate, resEntered) VALUES (?, ?, ?, now());';
+  const id = req.body.id;
+  const time = req.body.resTime;
+  const size = req.body.resSize;
+  db.query(sqlCreateReservation, [id, size, time], (err, result)=>{
+    res.send(result);
+})
+})
+
+router.get('/user/:id', (req, res)=>{
+  const sqlGetUserReservations = 'SELECT * FROM heroku_a50bb988a66073c.reservation where guestID = ? ORDER BY resDate ASC;';
+  const id = req.params.id;
+  console.log(id)
+  db.query(sqlGetUserReservations, id, (err, result)=>{
+    res.send(result);
+})
+})
+
   module.exports = router;
 
   

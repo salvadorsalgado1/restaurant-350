@@ -7,10 +7,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-         <router-link class="nav-link active" :to="{name:'Home'}">Home</router-link>
-        <router-link class="nav-link" :to="{name:'About'}">About</router-link>
-      </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'Home'}">Home</router-link>
+         </li>
+         <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'Customer'}">Your Reservations</router-link>
+         </li>
+         <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'MakeReservation'}">Create Reservation</router-link>
+         </li>
+      </ul> 
+        
+        <div v-if="this.$store.state.employee">
+          <router-link class="nav-link active" :to="{name:'Reservation'}">Reservations</router-link>
+        </div>
+        <div v-if="this.$store.state.manager">
+           <router-link class="nav-link" :to="{name:'Manager'}">Manager</router-link>
+        </div>
+        <span v-if="this.$store.state.logged" class="navbar-text">
+        <button @click="loggout" class="btn btn-primary log-out text-white">Logout</button> 
+      </span>
+   
     </div>
   </div>
 </nav>
@@ -19,10 +37,19 @@
 
 <script>
 export default {
-
+methods:{
+  loggout(){
+    this.$store.commit('logoutUser');
+      this.$router.push({name:'Landing'})
+  }
+}
 }
 </script>
 
 <style>
-
+.log-out{
+  margin-left:20px;
+  background-color:rgb(34, 177, 221);
+  border-color:rgb(34, 177, 221);
+}
 </style>

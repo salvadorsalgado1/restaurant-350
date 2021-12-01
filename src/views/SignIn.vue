@@ -23,7 +23,6 @@
               <div class="mt-4" v-if="this.$store.state.loading">
                 <Loading/>
               </div>
-              
                <button class="btn btn-primary mt-4">Submit</button>
             </div>
           </div>
