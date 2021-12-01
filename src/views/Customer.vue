@@ -50,11 +50,7 @@ name:"Customer",
         }
     },
     mounted(){
-        let res = this.$store.state.user.reservations[0].resDate;
-        console.log(res.getDay);
-        let date = new Date();
-        let unixtime = Date.parse(res.resDate)
-        console.log(unixtime); 
+        
         
     },
     computed:{
