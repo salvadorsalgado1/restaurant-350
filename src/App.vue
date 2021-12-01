@@ -1,8 +1,30 @@
 <template>
   <div id="app">
+    <div v-if="this.$route.name!='Landing'">
+      <div v-if="!isLogged">
+        <Navigation/>
+      </div>
+      <div v-if="isLogged">
+        <NavigationLog/>
+      </div>
+    </div>
     <router-view/>
   </div>
 </template>
+<script>
+import NavigationLog from "./components/NavigationLog"
+import Navigation from  "./components/Navigation"
+export default {
+  components:{Navigation,NavigationLog},
+  computed:{
+    isLogged(){
+      let status = this.$store.state.logged;
+      return status
+    }
+  }
+
+}
+</script>
 <style>
  body{
    background-color:rgb(238, 245, 255);

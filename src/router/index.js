@@ -5,6 +5,7 @@ import Landing from '../views/Landing.vue'
 import Reservation from '../views/Reservation.vue'
 import SignIn from '../views/SignIn.vue'
 import Customer from '../views/Customer.vue'
+import Four from '../views/Four.vue'
 Vue.use(VueRouter)
  
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
     name: 'Signin',
     component: SignIn
   },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four
+  }
 ]
 
 const router = new VueRouter({

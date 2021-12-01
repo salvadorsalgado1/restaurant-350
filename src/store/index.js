@@ -18,7 +18,8 @@ export default new Vuex.Store({
       manager: 0,
       reservations:[]
     },
-    test:[]
+    test:[],
+    logged:false
   },
   mutations: {
     Loading(state, payload){
