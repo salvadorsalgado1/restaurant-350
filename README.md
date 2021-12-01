@@ -1,3 +1,10 @@
+Directions:
+Node version 12.8
+npm install
+npm run dev 
+npm run serve
+
+
 # Restaurant Application
 
 This application utilizes methods in order serve the user(s) in a restaurant type of setting.
