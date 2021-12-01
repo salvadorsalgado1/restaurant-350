@@ -47,9 +47,13 @@ methods:{
 </script>
 
 <style>
+.restaurant-nav{
+  background-color:blue;
+}
 .log-out{
   margin-left:20px;
   background-color:rgb(34, 177, 221);
   border-color:rgb(34, 177, 221);
 }
+
 </style>
