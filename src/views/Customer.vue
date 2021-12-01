@@ -2,20 +2,20 @@
   <div class="customer">
       <div class="container mt-4">
           <div class="row">
-              <div class="col-6">
+              <div class="col-md-6 col-sm-12 mt-4">
                   <div class="card">
                       <div class="card-body">
                           <h2>Reservations</h2>
                             <ul class="list-group">
                                 <li v-for="(reservation,index) in currentUser" :key="index" class="list-group-item"> 
                                     Party Size: {{reservation.partySize}} &nbsp;&nbsp; Reservation ID: {{reservation.resID}}<br/>
-                                    Reservation Date: {{reservation.resDate.substring(0,9)}} @ {{reservation.resDate.substring(11,16)}}
-                                    </li>
+                                    Reservation Date: {{reservation.resDate.substring(0,8)}} @ {{reservation.resDate.substring(9,14)}}
+                                </li>
                             </ul>
                       </div>
                   </div>
               </div>
-              <div class="col-6">
+              <div class="col-md-6 col-sm-12 mt-4">
                   <div class="card">
                       <div class="card-body">
                           <h2>{{userData.fullName}}</h2>
@@ -28,7 +28,6 @@
                                 Email: <br/>
                                 {{userData.email}}
                             </p>
-                            
                             <p>
                                 Guest ID: <br/>
                                 {{userData.guestID}}

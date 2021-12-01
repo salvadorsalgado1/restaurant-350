@@ -5,7 +5,7 @@
         <source src="../assets/landing-rest.mp4" type="video/mp4">
       </video>
       <div class="head-vid">
-          <h1 class="mr-3 header-vid">The Restaurant</h1>
+          <h1 class="mr-3 header-vid">Restaurant</h1>
           <p class="desc-vid">Lets Get Started</p> 
             <router-link class="btn btn-primary btn-controls btn-controls-1" :to="{name:'Signin'}">Sign In</router-link>
             <router-link class="btn btn-primary btn-controls" :to="{name:'Registration'}">Register</router-link>
