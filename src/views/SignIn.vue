@@ -47,7 +47,7 @@ import Loading from '../components/LoadingSpinner.vue'
   },
   methods:{
     submitLogin(email, password){
-     
+     console.log(email, password)
       this.$store.commit('Loading', true);
       this.$store.dispatch('dispatchLogin', {email: email, password: password})
       setTimeout(()=>{

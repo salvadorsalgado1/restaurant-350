@@ -5,6 +5,7 @@ Vue.use(Vuex)
  
 export default new Vuex.Store({
   state: {
+    allReservations:[],
     loading:false,
     month:[
     'January','February','March','April','May','June',
@@ -19,9 +20,22 @@ export default new Vuex.Store({
       reservations:[]
     },
     test:[],
-    logged:false
+    logged:false,
+    manager:false,
+    employee:false
   },
   mutations: {
+    setDeleteReservation(state, payload){
+      let id = parseInt(payload)
+      console.log(id)
+      state.allReservations = state.allReservations.filter(res=>{ 
+        return res.resID != id
+    })
+    },
+    setAllReservations(state, payload){
+      state.allReservations = payload;
+
+    },
     Loading(state, payload){
       state.loading = payload;
     },
@@ -31,6 +45,12 @@ export default new Vuex.Store({
       state.user.fullName = payload[0][0].fullName
       state.user.phoneNumber = payload[0][0].phoneNumber
       state.user.email = payload[0][0].email
+      if(payload[0][0].employee == 1){
+        state.employee = true;
+      }
+      if(payload[0][0].manager == 1){
+        state.manager = true;
+      }
       state.user.employee = payload[0][0].employee
       state.user.manager = payload[0][0].manager
       state.user.reservations = payload[1]
@@ -38,7 +58,22 @@ export default new Vuex.Store({
     }
   },
   actions: {
-   
+    dispatchDeleteReservation({commit}, payload){
+      console.log("deleted: ", payload)
+      axios.delete(`http://localhost:5000/api/reservation/delete/${payload}`)
+        .then(()=>{
+          console.log("reservation deleted")
+        })
+        commit("setDeleteReservation", payload)
+    },
+    
+    dispatchAllReservations({commit}){
+      axios.get("http://localhost:5000/api/reservation/")
+      .then(response=>{
+        commit('setAllReservations', response.data)
+        console.log(response.data)
+      })
+    },
     dispatchLogin({commit}, payload){
       console.log(payload.email)
       axios.get(`http://localhost:5000/api/login/${payload.email}`)

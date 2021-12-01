@@ -6,6 +6,8 @@ import Reservation from '../views/Reservation.vue'
 import SignIn from '../views/SignIn.vue'
 import Customer from '../views/Customer.vue'
 import Four from '../views/Four.vue'
+import Manager from '../views/Manager.vue'
+import store from '../store/index'
 Vue.use(VueRouter)
  
 const routes = [
@@ -22,12 +24,14 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    
   },
   {
     path:'/customer',
     name:'Customer',
-    component:Customer
+    component:Customer,
+     
   },
   {
     path: '/about',
@@ -46,13 +50,33 @@ const routes = [
     path: '/:catchall(.*)',
     name: 'Four',
     component: Four
-  }
+  },
+  {
+    path: '/manager',
+    name: 'Manager',
+    component: Manager,
+    meta:{manager:true}
+  },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next)=>{
+  if(to.meta.manager && !store.state.manager){
+    next('/customer')
+  }else{
+    next();
+  }
+
+  if(to.meta.employee && !store.state.employee){
+    next('/customer')
+  }else{
+    next();
+  }
 })
 
 export default router
