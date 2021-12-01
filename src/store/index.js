@@ -18,7 +18,9 @@ export default new Vuex.Store({
       manager: 0,
       reservations:[]
     },
-    test:[]
+    test:[],
+    manager:false,
+    employee:false
   },
   mutations: {
     Loading(state, payload){
@@ -30,6 +32,12 @@ export default new Vuex.Store({
       state.user.fullName = payload[0][0].fullName
       state.user.phoneNumber = payload[0][0].phoneNumber
       state.user.email = payload[0][0].email
+      if(payload[0][0].employee == 1){
+        state.employee = true;
+      }
+      if(payload[0][0].manager == 1){
+        state.manager = true;
+      }
       state.user.employee = payload[0][0].employee
       state.user.manager = payload[0][0].manager
       state.user.reservations = payload[1]
@@ -37,7 +45,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-   
     dispatchLogin({commit}, payload){
       console.log(payload.email)
       axios.get(`http://localhost:5000/api/login/${payload.email}`)

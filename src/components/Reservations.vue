@@ -9,7 +9,7 @@
                     </div>
                     <div class="col d-flex justify-content-end align-items-center">
                         <div class="gap-2 ">
-                            <button class="btn btn-controls btn-primary block btn-block">Call</button> 
+                            <button class="btn btn-controls btn-primary block btn-block">Notify</button> 
                             <button class="btn btn-controls btn-danger block btn-block btn-delete">Delete</button>
                         </div>
                     </div>
